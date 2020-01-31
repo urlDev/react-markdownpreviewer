@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import marked from 'marked';
+import { Persist } from 'react-persist'
 
 import './MarkDown.css';
 
@@ -80,6 +81,12 @@ class MarkDown extends Component {
 					<div id="preview" dangerouslySetInnerHTML={{ __html: marked(value) }} />
 				</div>
                 <p className="url">by urlDev</p>
+				<Persist 
+          name="markdown" 
+          data={this.state} 
+          debounce={500} 
+          onMount={data => this.setState(data)}
+        />
 			</div>
 		);
 	}
